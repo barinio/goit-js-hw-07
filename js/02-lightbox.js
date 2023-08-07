@@ -34,7 +34,7 @@ let gallery = new SimpleLightbox(".gallery a", {
 });
 
 function closeModalOnSpace(e) {
-  if (e.key !== " ") {
+  if (e.keyCode !== 27) {
     return;
   }
   gallery.close();
