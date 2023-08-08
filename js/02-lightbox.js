@@ -22,9 +22,6 @@ ul.addEventListener("click", onImageOpenModal);
 
 function onImageOpenModal(e) {
   e.preventDefault();
-  if (!e.target.classList.contains("gallery__image")) {
-    return;
-  }
 }
 let gallery = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
