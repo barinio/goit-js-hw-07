@@ -25,5 +25,8 @@ function onImageOpenModal(e) {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  document.addEventListener("keydown", closeModalOnSpace);
 }
+let gallery = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
