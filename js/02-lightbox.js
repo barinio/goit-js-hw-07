@@ -27,16 +27,3 @@ function onImageOpenModal(e) {
   }
   document.addEventListener("keydown", closeModalOnSpace);
 }
-
-let gallery = new SimpleLightbox(".gallery a", {
-  captionsData: "alt",
-  captionDelay: 250,
-});
-
-function closeModalOnSpace(e) {
-  if (e.keyCode !== 27) {
-    return;
-  }
-  gallery.close();
-  document.removeEventListener("keydown", closeModalOnSpace);
-}

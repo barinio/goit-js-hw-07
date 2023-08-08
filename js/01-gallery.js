@@ -39,7 +39,7 @@ function onImgPopUp(e) {
 
   document.addEventListener("keydown", closeModalOnSpace);
   function closeModalOnSpace(e) {
-    if (e.key !== " ") {
+    if (e.keyCode !== 27) {
       return;
     }
     instance.close();
