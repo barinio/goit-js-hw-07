@@ -37,24 +37,15 @@ function onImgPopUp(e) {
       <img src="${e.target.dataset.source}" width="800" height="600">
   `,
     {
-      handler: null,
-      onShow(instance) {
-        this.handler = closeModal.bind(instance);
-        document.addEventListener("keydown", this.handler);
-      },
-      onClose() {
-        document.removeEventListener("keydown", this.handler);
-      },
+      onShow: () => document.querySelector("keydown", onEscPress),
+      onClose: () => document.querySelector("keydown", onEscPress),
     }
   );
   instance.show();
 
-  document.addEventListener("keydown", closeModal);
-  function closeModal(e) {
-    if (e.keyCode !== 27) {
-      return;
+  function onEscPress(e) {
+    if (e.key === "Escape") {
+      instance.close();
     }
-    instance.close();
-    document.removeEventListener("keydown", closeModal);
   }
 }
