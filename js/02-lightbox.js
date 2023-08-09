@@ -18,11 +18,6 @@ function markup(items) {
 }
 ul.innerHTML = galleryItemMarkup;
 
-ul.addEventListener("click", onImageOpenModal);
-
-function onImageOpenModal(e) {
-  e.preventDefault();
-}
 let gallery = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,

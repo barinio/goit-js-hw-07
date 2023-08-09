@@ -32,17 +32,32 @@ function onImgPopUp(e) {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
       <img src="${e.target.dataset.source}" width="800" height="600">
-  `);
+  `,
+    {
+      onClose: () => {
+        document.removeEventListener("keydown", closeModalOnSpace);
+      },
+    }
+  );
   instance.show();
 
   document.addEventListener("keydown", closeModalOnSpace);
+
   function closeModalOnSpace(e) {
-    if (e.keyCode !== 27) {
-      return;
+    if (e.keyCode === 27) {
+      instance.close();
     }
-    instance.close();
-    document.removeEventListener("keydown", closeModalOnSpace);
   }
 }
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("basicLightbox")) {
+    const instance = basicLightbox.getInstance();
+    if (instance) {
+      instance.close();
+    }
+  }
+});
