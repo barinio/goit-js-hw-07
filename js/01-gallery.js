@@ -37,27 +37,24 @@ function onImgPopUp(e) {
       <img src="${e.target.dataset.source}" width="800" height="600">
   `,
     {
-      onClose: () => {
-        document.removeEventListener("keydown", closeModalOnSpace);
+      handler: null,
+      onShow(instance) {
+        this.handler = closeModal.bind(instance);
+        document.addEventListener("keydown", this.handler);
+      },
+      onClose() {
+        document.removeEventListener("keydown", this.handler);
       },
     }
   );
   instance.show();
 
-  document.addEventListener("keydown", closeModalOnSpace);
-
-  function closeModalOnSpace(e) {
-    if (e.keyCode === 27) {
-      instance.close();
+  document.addEventListener("keydown", closeModal);
+  function closeModal(e) {
+    if (e.keyCode !== 27) {
+      return;
     }
+    instance.close();
+    document.removeEventListener("keydown", closeModal);
   }
 }
-
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("basicLightbox")) {
-    const instance = basicLightbox.getInstance();
-    if (instance) {
-      instance.close();
-    }
-  }
-});
